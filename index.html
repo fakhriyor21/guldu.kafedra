@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guliston Davlat Universiteti - Axborot Texnologiyalari Fakulteti - Amaliy Matematika va Axborot Texnologiyalari Kafedrasi">
+    <meta name="keywords" content="GDU, Matematika, Axborot, Kafedrasi">
+    <title>Bosh sahifa - Guliston Davlat Universiteti</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap"></i> GDU - Kafedra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html" data-i18n="nav.home">Bosh sahifa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav.about">Kafedra haqida</a></li>
+                    <li class="nav-item"><a class="nav-link" href="teachers.html" data-i18n="nav.teachers">O'qituvchilar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html" data-i18n="nav.subjects">Fanlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html" data-i18n="nav.news">Yangiliklar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html" data-i18n="nav.gallery">Galerya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav.contact">Bog'lanish</a></li>
+                    <li class="nav-item">
+                        <select class="form-select form-select-sm btn-language-select" id="languageSelect">
+                            <option value="uz">O'zbek</option>
+                            <option value="en">English</option>
+                            <option value="ru">Русский</option>
+                        </select>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2 btn-theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content fade-in-up">
+            <h1 data-i18n="hero.university">Guliston Davlat Universiteti</h1>
+            <h2 data-i18n="hero.faculty">Axborot Texnologiyalari Fakulteti</h2>
+            <p data-i18n="hero.department">Amaliy Matematika va Axborot Texnologiyalari Kafedrasi</p>
+            <div>
+                <a href="about.html" class="btn-primary-custom" data-i18n="hero.btn1">Kafedra haqida</a>
+                <a href="teachers.html" class="btn-primary-custom" data-i18n="hero.btn2">O'qituvchilar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title" data-i18n="stats.title">Kafedraning Statistikasi</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card slide-in-left">
+                        <div class="stat-number" data-target="45">0</div>
+                        <div class="stat-label" data-i18n="stats.teachers">O'qituvchi</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card slide-in-left animate-2">
+                        <div class="stat-number" data-target="2800">0</div>
+                        <div class="stat-label" data-i18n="stats.students">Talaba</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card slide-in-right">
+                        <div class="stat-number" data-target="80">0</div>
+                        <div class="stat-label" data-i18n="stats.subjects">Fan</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="stat-card slide-in-right animate-2">
+                        <div class="stat-number" data-target="1998">0</div>
+                        <div class="stat-label" data-i18n="stats.year">Tashkil yili</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Teachers Section -->
+    <section class="py-5" style="background: linear-gradient(135deg, rgba(13, 110, 253, 0.05) 0%, rgba(13, 202, 240, 0.05) 100%);">
+        <div class="container">
+            <h2 class="section-title" data-i18n="teachers.featured">Yetakchi O'qituvchilar</h2>
+            <div class="row" id="featuredTeachers">
+                <!-- JavaScript orqali to'ldiriladi -->
+            </div>
+            <div class="text-center mt-4">
+                <a href="teachers.html" class="btn-main" data-i18n="teachers.view-all">Barcha o'qituvchilarni ko'rish</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title" data-i18n="features.title">Kafedraning Xususiyatlari</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card-custom fade-in-up">
+                        <div style="text-align: center; padding: 2rem;">
+                            <i class="fas fa-book" style="font-size: 3rem; color: #0d6efd; margin-bottom: 1rem;"></i>
+                            <h5 class="card-title" data-i18n="features.education">Zamonaviy Ta'lim</h5>
+                            <p class="card-text" data-i18n="features.education-desc">Eng yangi ta'lim usullari va texnologiyalar bilan dars berish</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card-custom fade-in-up animate-2">
+                        <div style="text-align: center; padding: 2rem;">
+                            <i class="fas fa-laptop" style="font-size: 3rem; color: #0d6efd; margin-bottom: 1rem;"></i>
+                            <h5 class="card-title" data-i18n="features.tech">Texnologiya</h5>
+                            <p class="card-text" data-i18n="features.tech-desc">Kompyuter laboratoriyasi va zamonaviy texnologiyalar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card-custom fade-in-up animate-3">
+                        <div style="text-align: center; padding: 2rem;">
+                            <i class="fas fa-globe" style="font-size: 3rem; color: #0d6efd; margin-bottom: 1rem;"></i>
+                            <h5 class="card-title" data-i18n="features.international">Xalqaro Hamkorlik</h5>
+                            <p class="card-text" data-i18n="features.international-desc">Chet el universitetlari bilan hamkorlik va almashuvlar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest News -->
+    <section class="py-5" style="background: linear-gradient(135deg, rgba(13, 110, 253, 0.05) 0%, rgba(13, 202, 240, 0.05) 100%);">
+        <div class="container">
+            <h2 class="section-title" data-i18n="news.latest">So'nggi Yangiliklar</h2>
+            <div class="row" id="latestNews">
+                <!-- JavaScript orqali to'ldiriladi -->
+            </div>
+            <div class="text-center mt-4">
+                <a href="news.html" class="btn-main" data-i18n="news.view-all">Barcha yangiliklar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-content">
+                    <h5 data-i18n="footer.about">Kafedra haqida</h5>
+                    <p data-i18n="footer.about-desc">Amaliy Matematika va Axborot Texnologiyalari Kafedrasi - zamonaviy ta'lim markazi</p>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5 data-i18n="footer.links">Tezkor Havolalar</h5>
+                    <div class="footer-links">
+                        <a href="about.html" data-i18n="nav.about">Kafedra haqida</a>
+                        <a href="teachers.html" data-i18n="nav.teachers">O'qituvchilar</a>
+                        <a href="subjects.html" data-i18n="nav.subjects">Fanlar</a>
+                        <a href="contact.html" data-i18n="nav.contact">Bog'lanish</a>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5 data-i18n="footer.contact">Bog'lanish</h5>
+                    <p><i class="fas fa-phone"></i> +998 70 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> kafedra@gdu.uz</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">&copy; 2024 Guliston Davlat Universiteti. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/data.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- Index sahifasi uchun o'ziga xos JS -->
+    <script>
+        // Yetakchi o'qituvchilarni ko'rsatish
+        function displayFeaturedTeachers() {
+            const container = document.getElementById('featuredTeachers');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            const featured = teachers.slice(0, 3);
+            
+            featured.forEach((teacher, index) => {
+                const detailText = languageManager.translate('teachers.detail');
+                container.innerHTML += `
+                    <div class="col-md-4 mb-4">
+                        <div class="card-custom fade-in-up" style="animation-delay: ${index * 0.1}s;">
+                            <img src="${teacher.image}" class="card-img-top" alt="${teacher.name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${teacher.name}</h5>
+                                <p class="card-text">${teacher.title}</p>
+                                <a href="teacher-single.html?id=${teacher.id}" class="btn-main">${detailText}</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // So'nggi yangiliklar
+        function displayLatestNews() {
+            const container = document.getElementById('latestNews');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            const latest = news.slice(0, 3);
+            
+            latest.forEach((article, index) => {
+                const readText = languageManager.translate('news.read');
+                container.innerHTML += `
+                    <div class="col-md-4 mb-4">
+                        <div class="card-custom fade-in-up" style="animation-delay: ${index * 0.1}s;">
+                            <img src="${article.image}" class="card-img-top" alt="${article.title}">
+                            <div class="card-body">
+                                <div class="badge-primary">${article.category}</div>
+                                <h5 class="card-title mt-2">${article.title}</h5>
+                                <p class="card-text small text-muted">${article.date}</p>
+                                <p class="card-text">${article.excerpt.substring(0, 100)}...</p>
+                                <a href="news.html" class="btn-outline-main">${readText}</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Sahifa yuklanganida funksiyalarni ishga tushirish
+        window.addEventListener('load', () => {
+            displayFeaturedTeachers();
+            displayLatestNews();
+        });
+
+        // Language change event
+        const originalSetLanguage = languageManager.setLanguage.bind(languageManager);
+        languageManager.setLanguage = function(lang, save = true) {
+            originalSetLanguage(lang, save);
+            displayFeaturedTeachers();
+            displayLatestNews();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ilmiy Ishlar - Guliston Davlat Universiteti</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .work-card {
+            border-left: 5px solid #0d6efd;
+            background: linear-gradient(135deg, rgba(13, 110, 253, 0.05) 0%, rgba(13, 202, 240, 0.05) 100%);
+        }
+        
+        .work-type-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+            color: white;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .research-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-box {
+            background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap"></i> GDU - Kafedra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Bosh sahifa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Kafedra haqida</a></li>
+                    <li class="nav-item"><a class="nav-link" href="teachers.html">O'qituvchilar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html">Fanlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Yangiliklar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galerya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Bog'lanish</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2 btn-theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in-up">Ilmiy Ishlar va Tadqiqotlar</h1>
+            <p class="fade-in-up animate-2">Kafedraning ilmiy yutuqlari va tadqiqot loyihalari</p>
+        </div>
+    </section>
+
+    <!-- Research Stats -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title mb-4">Ilmiy Faoliyat Statistikasi</h2>
+            <div class="research-stats">
+                <div class="stat-box fade-in-up">
+                    <div class="stat-number" data-target="245">0</div>
+                    <div class="stat-label">Nashriyot</div>
+                </div>
+                <div class="stat-box fade-in-up animate-2">
+                    <div class="stat-number" data-target="8">0</div>
+                    <div class="stat-label">Patent</div>
+                </div>
+                <div class="stat-box fade-in-up animate-3">
+                    <div class="stat-number" data-target="15">0</div>
+                    <div class="stat-label">Monografiya</div>
+                </div>
+                <div class="stat-box fade-in-up animate-4">
+                    <div class="stat-number" data-target="32">0</div>
+                    <div class="stat-label">Loyiha</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scientific Works -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title">So'nggi Ilmiy Ishlar</h2>
+            <div class="row" id="worksContainer">
+                <!-- JavaScript orqali to'ldiriladi -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Directions -->
+    <section class="py-5" style="background: linear-gradient(135deg, rgba(13, 110, 253, 0.05) 0%, rgba(13, 202, 240, 0.05) 100%);">
+        <div class="container">
+            <h2 class="section-title">Asosiy Tadqiqot Yo'nalishlari</h2>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card-custom fade-in-up">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-brain"></i> Suniy Intellekt</h5>
+                            <p class="card-text">Mashinali o'rganish va chuqur o'rganish texnologiyalari bo'yicha tadqiqotlar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card-custom fade-in-up animate-2">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-shield-alt"></i> Kiberxavfsizlik</h5>
+                            <p class="card-text">Ma'lumotlarni himoya qilish va xavfsizlik muammolari bo'yicha tadqiqotlar</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card-custom fade-in-up animate-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-database"></i> Big Data</h5>
+                            <p class="card-text">Katta miqdordagi ma'lumotlarni tahlil qilish va qayta ishlash</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card-custom fade-in-up animate-4">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-cloud"></i> Cloud Computing</h5>
+                            <p class="card-text">Bulutli texnologiyalar va distribyutiv tizimlar bo'yicha tadqiqotlar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-content">
+                    <h5>Kafedra haqida</h5>
+                    <p>Amaliy Matematika va Axborot Texnologiyalari Kafedrasi - zamonaviy ta'lim markazi</p>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Tezkor Havolalar</h5>
+                    <div class="footer-links">
+                        <a href="about.html">Kafedra haqida</a>
+                        <a href="teachers.html">O'qituvchilar</a>
+                        <a href="subjects.html">Fanlar</a>
+                        <a href="contact.html">Bog'lanish</a>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Bog'lanish</h5>
+                    <p><i class="fas fa-phone"></i> +998 70 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> kafedra@gdu.uz</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Guliston Davlat Universiteti. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- Scientific Works page JS -->
+    <script>
+        // Ilmiy ishlarni ko'rsatish
+        function displayScientificWorks() {
+            const container = document.getElementById('worksContainer');
+            
+            scientificWorks.forEach((work, index) => {
+                const typeIcon = work.type === 'Maqola' ? 'fa-newspaper' : 
+                                 work.type === 'Kitob' ? 'fa-book' : 'fa-lightbulb';
+                
+                container.innerHTML += `
+                    <div class="col-lg-6 mb-4">
+                        <div class="card work-card fade-in-up" style="animation-delay: ${index * 0.1}s;">
+                            <div class="card-body">
+                                <div class="work-type-badge">
+                                    <i class="fas ${typeIcon}"></i> ${work.type}
+                                </div>
+                                <h5 class="card-title">${work.title}</h5>
+                                <p class="card-text text-muted mb-2">
+                                    <strong>Muallif:</strong> ${work.author}
+                                </p>
+                                <p class="card-text text-muted mb-2">
+                                    <strong>Nashr:</strong> ${work.journal}
+                                </p>
+                                <p class="card-text">
+                                    <i class="fas fa-calendar"></i> ${work.year}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Sahifa yuklanganida
+        window.addEventListener('load', () => {
+            displayScientificWorks();
+        });
+    </script>
+</body>
+</html>

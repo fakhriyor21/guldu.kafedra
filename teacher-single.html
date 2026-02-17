@@ -1,0 +1,392 @@
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'qituvchi - Guliston Davlat Universiteti</title>
+    
+    <link 
+href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .teacher-profile-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 3rem 0;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teacher-profile-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .teacher-profile-header .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .teacher-image-wrapper {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .teacher-image {
+            width: 250px;
+            height: 300px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            object-fit: cover;
+            border: 5px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .teacher-image:hover {
+            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+            transform: translateY(-5px);
+        }
+        
+        .contact-info-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.12) 0%, rgba(118, 75, 162, 0.12) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-card:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+        
+        .subjects-list, .achievements-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .subjects-list li, .achievements-list li {
+            padding: 1rem;
+            padding-left: 2.5rem;
+            margin-bottom: 0.8rem;
+            position: relative;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+            border-left: 3px solid #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .subjects-list li:hover, .achievements-list li:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+            transform: translateX(5px);
+            border-left: 3px solid #764ba2;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.12);
+        }
+        
+        .subjects-list li:before {
+            content: "📚";
+            position: absolute;
+            left: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .achievements-list li:before {
+            content: "⭐";
+            position: absolute;
+            left: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        /* Modern section backgrounds */
+        section {
+            position: relative;
+        }
+
+        .tea-leaf-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.03;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0zm0 90c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z' fill='%23333'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap"></i> GDU - Kafedra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Bosh sahifa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Kafedra haqida</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="teachers.html">O'qituvchilar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html">Fanlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Yangiliklar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galerya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Bog'lanish</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2 btn-theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Teacher Profile Header -->
+    <section class="teacher-profile-header">
+        <div class="container">
+            <a href="teachers.html" class="text-white mb-3" style="text-decoration: none;">
+                <i class="fas fa-arrow-left"></i> O'qituvchilar ro'yxatiga qaytish
+            </a>
+            <div class="row mt-3">
+                <div class="col-lg-4">
+                    <div class="teacher-image-wrapper fade-in-up">
+                        <img id="teacherImage" src="" alt="O'qituvchi" class="teacher-image">
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="fade-in-up animate-2">
+                        <h1 id="teacherName"></h1>
+                        <p class="lead mb-3"><strong id="teacherPosition"></strong></p>
+                        <p id="teacherTitle" class="mb-4"></p>
+                        <div id="teacherDescription"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); position: relative; border-top: 1px solid #e9ecef;">
+        <div class="tea-leaf-pattern"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="contact-info-card fade-in-up">
+                        <h5 class="mb-3"><i class="fas fa-info-circle"></i> Aloqa Ma'lumotlari</h5>
+                        <div class="mb-3">
+                            <strong><i class="fas fa-envelope"></i> Email:</strong><br>
+                            <a href="mailto:" id="teacherEmail"></a>
+                        </div>
+                        <div class="mb-3">
+                            <strong><i class="fas fa-phone"></i> Telefon:</strong><br>
+                            <a href="tel:" id="teacherPhone"></a>
+                        </div>
+                        <div>
+                            <strong><i class="fas fa-user-tie"></i> Lavozim:</strong><br>
+                            <span id="teacherPositionFull"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="contact-info-card fade-in-up animate-2">
+                        <h5 class="mb-3"><i class="fas fa-building"></i> Kafedra Ma'lumotlari</h5>
+                        <div class="mb-3">
+                            <strong>Kafedra nomi:</strong><br>
+                            <span>Amaliy Matematika va Axborot Texnologiyalari</span>
+                        </div>
+                        <div class="mb-3">
+                            <strong>Fakultet nomi:</strong><br>
+                            <span>Axborot Texnologiyalari</span>
+                        </div>
+                        <div>
+                            <strong>Universitet nomi:</strong><br>
+                            <span>Guliston Davlat Universiteti</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subjects -->
+    <section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); position: relative; border-top: 1px solid #e9ecef;">
+        <div class="tea-leaf-pattern"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <h2 class="section-title fade-in-up">O'qitiladigan Fanlar</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="subjects-list" id="subjectsList">
+                        <!-- JavaScript orqali to'ldiriladi -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section class="py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); position: relative; border-top: 1px solid #e9ecef;">
+        <div class="tea-leaf-pattern"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <h2 class="section-title fade-in-up">Yutuqlar va Sertifikatsiyalar</h2>
+            <div class="row">
+                <div class="col-lg-8">
+                    <ul class="achievements-list" id="achievementsList">
+                        <!-- JavaScript orqali to'ldiriladi -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-content">
+                    <h5>Kafedra haqida</h5>
+                    <p>Amaliy Matematika va Axborot Texnologiyalari Kafedrasi - zamonaviy ta'lim markazi</p>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Tezkor Havolalar</h5>
+                    <div class="footer-links">
+                        <a href="about.html">Kafedra haqida</a>
+                        <a href="teachers.html">O'qituvchilar</a>
+                        <a href="subjects.html">Fanlar</a>
+                        <a href="contact.html">Bog'lanish</a>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Bog'lanish</h5>
+                    <p><i class="fas fa-phone"></i> +998 70 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> kafedra@gdu.uz</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Guliston Davlat Universiteti. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- Individual teacher page JS -->
+    <script>
+        // URL parametridan o'qituvchi IDsini olish
+        function getTeacherId() {
+            const params = new URLSearchParams(window.location.search);
+            return parseInt(params.get('id'));
+        }
+
+        // O'qituvchi ma'lumotlarini ko'rsatish
+        function displayTeacherProfile() {
+            const teacherId = getTeacherId();
+            const teacher = teachers.find(t => t.id === teacherId);
+
+            if (!teacher) {
+                document.body.innerHTML = '<div class="container py-5"><h2>O\'qituvchi topilmadi</h2><a href="teachers.html">O\'qituvchilar ro\'yxatiga qaytish</a></div>';
+                return;
+            }
+
+            // Asosiy ma'lumotlar
+            const profileImg = document.getElementById('teacherImage');
+            profileImg.src = teacher.image;
+            // Wrapper and image: ensure aspect-safe pop-in and float
+            const wrapper = profileImg.parentElement;
+            // cleanup previous classes
+            wrapper.classList.remove('pop-in-zoom');
+            profileImg.classList.remove('pop-in-zoom','teacher-image-float','teacher-image-glow');
+            // force reflow to restart animation
+            void profileImg.offsetWidth;
+            // add pop-in to wrapper for consistent cropping animation and glow to image
+            wrapper.classList.add('pop-in-zoom');
+            profileImg.classList.add('teacher-image-glow');
+            // after pop-in finishes, enable subtle float on image
+            setTimeout(() => {
+                profileImg.classList.add('teacher-image-float');
+            }, 950);
+            document.getElementById('teacherName').textContent = teacher.name;
+            document.getElementById('teacherPosition').textContent = teacher.position;
+            document.getElementById('teacherPositionFull').textContent = teacher.position;
+            document.getElementById('teacherTitle').textContent = teacher.title;
+            document.getElementById('teacherDescription').innerHTML = `<p>${teacher.description}</p>`;
+            
+            // Aloqa ma'lumotlari
+            const emailLink = document.getElementById('teacherEmail');
+            emailLink.href = `mailto:${teacher.email}`;
+            emailLink.textContent = teacher.email;
+            
+            const phoneLink = document.getElementById('teacherPhone');
+            phoneLink.href = `tel:${teacher.phone}`;
+            phoneLink.textContent = teacher.phone;
+
+            // Fanlar ro'yxati - batafsil animatsiya bilan
+            const subjectsList = document.getElementById('subjectsList');
+            teacher.subjects.forEach((subject, index) => {
+                const li = document.createElement('li');
+                li.textContent = subject;
+                li.style.animationDelay = `${0.3 + index * 0.1}s`;
+                li.className = 'fade-in-up';
+                subjectsList.appendChild(li);
+            });
+
+            // Yutuqlar ro'yxati - batafsil animatsiya bilan
+            const achievementsList = document.getElementById('achievementsList');
+            teacher.achievements.forEach((achievement, index) => {
+                const li = document.createElement('li');
+                li.textContent = achievement;
+                li.style.animationDelay = `${0.5 + index * 0.1}s`;
+                li.className = 'fade-in-up';
+                achievementsList.appendChild(li);
+            });
+
+            // Animatsiyalar uchun soniya kutish
+            setTimeout(() => {
+                // Barcha section titlelarni animatsiya qil
+                document.querySelectorAll('.section-title').forEach(el => {
+                    if (!el.classList.contains('fade-in-up')) {
+                        el.classList.add('fade-in-up');
+                    }
+                });
+            }, 100);
+        }
+
+        // Sahifa yuklanganida funksiyalarni ishga tushirish
+        window.addEventListener('load', () => {
+            displayTeacherProfile();
+        });
+    </script>
+</body>
+</html>

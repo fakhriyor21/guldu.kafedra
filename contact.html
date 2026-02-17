@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bog'lanish - Guliston Davlat Universiteti</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .contact-info-box {
+            background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-info-box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(13, 110, 253, 0.3);
+        }
+        
+        .contact-info-box i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-form {
+            background: linear-gradient(135deg, rgba(13, 110, 253, 0.05) 0%, rgba(13, 202, 240, 0.05) 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 5px solid #0d6efd;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #212529;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+        
+        .form-control {
+            border-color: #dee2e6;
+        }
+        
+        .btn-submit {
+            background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+            border: none;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(13, 110, 253, 0.3);
+            color: white;
+        }
+        
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .working-hours {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap"></i> GDU - Kafedra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Bosh sahifa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Kafedra haqida</a></li>
+                    <li class="nav-item"><a class="nav-link" href="teachers.html">O'qituvchilar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html">Fanlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Yangiliklar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galerya</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="contact.html">Bog'lanish</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2 btn-theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in-up">Biz bilan Bog'lanish</h1>
+            <p class="fade-in-up animate-2">Savollar va tavsiyalar uchun biz bilan muloqot qiling</p>
+        </div>
+    </section>
+
+    <!-- Contact Info Boxes -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="contact-info-box fade-in-up">
+                        <i class="fas fa-phone"></i>
+                        <h5>Telefon</h5>
+                        <p class="mb-0">+998 70 123-45-67</p>
+                        <p>+998 70 123-45-68</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="contact-info-box fade-in-up animate-2">
+                        <i class="fas fa-envelope"></i>
+                        <h5>Email</h5>
+                        <p class="mb-0">kafedra@gdu.uz</p>
+                        <p>info@gdu.uz</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="contact-info-box fade-in-up animate-3">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h5>Manzil</h5>
+                        <p>Guliston shahar,<br>Universiteti ko'chasi, 1</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form and Info -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="col-lg-8 mb-4">
+                    <div class="contact-form fade-in-up">
+                        <h3 class="mb-4"><i class="fas fa-envelope"></i> Habar yuborish</h3>
+                        
+                        <div id="successMessage" class="alert alert-success" style="display: none;">
+                            <i class="fas fa-check-circle"></i> Habaringiz muvaffaqiyatli yuborildi. Tez orada sizga javob beramiz.
+                        </div>
+                        <div id="errorMessage" class="alert alert-danger" style="display: none;">
+                            <i class="fas fa-times-circle"></i> Xato ro'y berdi. Iltimos, qayta urinib ko'ring.
+                        </div>
+
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Ismingiz *</label>
+                                <input type="text" class="form-control" id="name" placeholder="To'liq ismingiz" required>
+                                <small class="text-danger" id="nameError" style="display: none;">Iltimos, ismingizni kiriting</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Manzilingiz *</label>
+                                <input type="email" class="form-control" id="email" placeholder="example@domain.com" required>
+                                <small class="text-danger" id="emailError" style="display: none;">Iltimos, to'g'ri email manzilini kiriting</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="phone" class="form-label">Telefon Raqamingiz</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="+998 __ ___-__-__">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Mavzu *</label>
+                                <input type="text" class="form-control" id="subject" placeholder="Habaringizning mavzusi" required>
+                                <small class="text-danger" id="subjectError" style="display: none;">Iltimos, mavzuni kiriting</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Habar *</label>
+                                <textarea class="form-control" id="message" rows="5" placeholder="Sizning habaring..." required></textarea>
+                                <small class="text-danger" id="messageError" style="display: none;">Iltimos, habaring kamida 10 ta belgidan iborat bo'lsin</small>
+                            </div>
+
+                            <button type="submit" class="btn-submit">
+                                <i class="fas fa-paper-plane"></i> Yuborish
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Working Hours -->
+                <div class="col-lg-4">
+                    <div class="working-hours fade-in-up animate-2">
+                        <h5 class="mb-4"><i class="fas fa-clock"></i> Ish Soatlari</h5>
+                        <div class="hours-item">
+                            <span><strong>Dushanba-Juma:</strong></span>
+                            <span>09:00 - 18:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span><strong>Shanba:</strong></span>
+                            <span>09:00 - 13:00</span>
+                        </div>
+                        <div class="hours-item">
+                            <span><strong>Yakshanba:</strong></span>
+                            <span>Yopiq</span>
+                        </div>
+                        <div class="hours-item">
+                            <span><strong>Bayram kunlari:</strong></span>
+                            <span>Yopiq</span>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h5 class="mb-3"><i class="fas fa-share-alt"></i> Ijtimoiy Tarmoqlar</h5>
+                        <div class="social-links" style="gap: 1rem;">
+                            <a href="#" style="font-size: 1.5rem;"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" style="font-size: 1.5rem;"><i class="fab fa-twitter"></i></a>
+                            <a href="#" style="font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                            <a href="#" style="font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-5" style="background: linear-gradient(135deg, rgba(13, 110, 253, 0.05) 0%, rgba(13, 202, 240, 0.05) 100%);">
+        <div class="container">
+            <h3 class="section-title">Xarita</h3>
+            <div class="map-container" style="height: 400px;">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3023.5299829903!2d69.62!3d40.41!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8b5a5a5a5a5d%3A0x5a5a5a5a5a5a5a5a!2sGuliston%20State%20University!5e0!3m2!1sen!2sus!4v1234567890"
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-content">
+                    <h5>Kafedra haqida</h5>
+                    <p>Amaliy Matematika va Axborot Texnologiyalari Kafedrasi - zamonaviy ta'lim markazi</p>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Tezkor Havolalar</h5>
+                    <div class="footer-links">
+                        <a href="about.html">Kafedra haqida</a>
+                        <a href="teachers.html">O'qituvchilar</a>
+                        <a href="subjects.html">Fanlar</a>
+                        <a href="contact.html">Bog'lanish</a>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Bog'lanish</h5>
+                    <p><i class="fas fa-phone"></i> +998 70 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> kafedra@gdu.uz</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Guliston Davlat Universiteti. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- Contact page JS -->
+    <script>
+        // Kontakt formani boshqarish
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Xatolikni qayta tiklash
+            document.querySelectorAll('.text-danger').forEach(el => el.style.display = 'none');
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            // Form ma'lumotlarini olish
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            // Validatsiya
+            let isValid = true;
+            
+            if (!name) {
+                document.getElementById('nameError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!email || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                document.getElementById('emailError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!subject) {
+                document.getElementById('subjectError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (message.length < 10) {
+                document.getElementById('messageError').style.display = 'block';
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                document.getElementById('errorMessage').style.display = 'block';
+                return;
+            }
+            
+            // Muvaffaqiyat xabari
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // Formani tiklash
+            document.getElementById('contactForm').reset();
+            
+            // 3 soniyadan keyin xabarni yashirish
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>

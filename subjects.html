@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanlar - Guliston Davlat Universiteti</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .subject-card {
+            border-left: 4px solid #0d6efd;
+            transition: all 0.3s ease;
+        }
+        
+        .subject-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+            border-left-color: #0dcaf0;
+        }
+        
+        .subject-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .subject-meta span {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .subject-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        
+        .filter-buttons {
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #0d6efd;
+            background: white;
+            color: #0d6efd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .filter-btn.active {
+            background: #0d6efd;
+            color: white;
+        }
+        
+        .filter-btn:hover {
+            background: #0d6efd;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap"></i> GDU - Kafedra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Bosh sahifa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Kafedra haqida</a></li>
+                    <li class="nav-item"><a class="nav-link" href="teachers.html">O'qituvchilar</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="subjects.html">Fanlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Yangiliklar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galerya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Bog'lanish</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2 btn-theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in-up">O'quv Fanları Katalogu</h1>
+            <p class="fade-in-up animate-2">Kafedrada o'qitiladigan barcha fanlarning to'liq ma'lumotlari</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-4">
+        <div class="container">
+            <h5 class="mb-3">Kategoriya bo'yicha filtrlash:</h5>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-category="all">Barchasi</button>
+                <button class="filter-btn" data-category="Asosiy">Asosiy Fanlar</button>
+                <button class="filter-btn" data-category="IT">IT Fanlar</button>
+                <button class="filter-btn" data-category="Til">Til Fanlar</button>
+                <button class="filter-btn" data-category="AI">Suniy Intellekt</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subjects List -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row" id="subjectsContainer">
+                <!-- JavaScript orqali to'ldiriladi -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-content">
+                    <h5>Kafedra haqida</h5>
+                    <p>Amaliy Matematika va Axborot Texnologiyalari Kafedrasi - zamonaviy ta'lim markazi</p>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Tezkor Havolalar</h5>
+                    <div class="footer-links">
+                        <a href="about.html">Kafedra haqida</a>
+                        <a href="teachers.html">O'qituvchilar</a>
+                        <a href="subjects.html">Fanlar</a>
+                        <a href="contact.html">Bog'lanish</a>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Bog'lanish</h5>
+                    <p><i class="fas fa-phone"></i> +998 70 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> kafedra@gdu.uz</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Guliston Davlat Universiteti. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- Subjects page JS -->
+    <script>
+        let currentFilter = 'all';
+
+        // Fanlarni ko'rsatish
+        function displaySubjects(category = 'all') {
+            const container = document.getElementById('subjectsContainer');
+            container.innerHTML = '';
+            
+            let filtered = subjects;
+            if (category !== 'all') {
+                filtered = subjects.filter(s => s.category === category);
+            }
+
+            filtered.forEach((subject, index) => {
+                container.innerHTML += `
+                    <div class="col-lg-6 mb-4">
+                        <div class="card subject-card fade-in-up" style="animation-delay: ${index * 0.05}s;">
+                            <div class="card-body">
+                                <h5 class="card-title">${subject.name}</h5>
+                                <p class="card-text">${subject.semester}-semestr</p>
+                                <div class="subject-meta">
+                                    <div>
+                                        <span><i class="fas fa-book"></i> ${subject.credits} kredit</span>
+                                    </div>
+                                    <div class="subject-category">${subject.category}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Filter tugmalari
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Aktiv tugmani o'zgarishi
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                // Fanlarni yangilash
+                currentFilter = e.target.dataset.category;
+                displaySubjects(currentFilter);
+            });
+        });
+
+        // Sahifa yuklanganida
+        window.addEventListener('load', () => {
+            displaySubjects();
+        });
+    </script>
+</body>
+</html>

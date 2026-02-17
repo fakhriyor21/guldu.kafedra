@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O'qituvchilar - Guliston Davlat Universiteti</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap"></i> GDU - Kafedra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Bosh sahifa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Kafedra haqida</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="teachers.html">O'qituvchilar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html">Fanlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Yangiliklar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galerya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Bog'lanish</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2 btn-theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in-up">Kafedraning O'qituvchilari</h1>
+            <p class="fade-in-up animate-2">Yuqori malaka va tajribaga ega mutaxassislar jamoi</p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input type="text" class="form-control" id="teacherSearch" placeholder="O'qituvchi ismi yoki mutahassisligi bo'yicha qidirish...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teachers Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row" id="teachersContainer">
+                <!-- JavaScript orqali to'ldiriladi -->
+            </div>
+        </div>
+    </section>
+
+    <!-- No Results -->
+    <div id="noResults" class="container text-center py-5" style="display: none;">
+        <h5>Natija topilmadi</h5>
+        <p>Iltimos, boshqa kalit so'z bilan qidiring</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-content">
+                    <h5>Kafedra haqida</h5>
+                    <p>Amaliy Matematika va Axborot Texnologiyalari Kafedrasi - zamonaviy ta'lim markazi</p>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Tezkor Havolalar</h5>
+                    <div class="footer-links">
+                        <a href="about.html">Kafedra haqida</a>
+                        <a href="teachers.html">O'qituvchilar</a>
+                        <a href="subjects.html">Fanlar</a>
+                        <a href="contact.html">Bog'lanish</a>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Bog'lanish</h5>
+                    <p><i class="fas fa-phone"></i> +998 70 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> kafedra@gdu.uz</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Guliston Davlat Universiteti. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- Teachers sahifasi uchun o'ziga xos JS -->
+    <script>
+        // Barcha o'qituvchilarni ko'rsatish
+        function displayTeachers(teacherList = teachers) {
+            const container = document.getElementById('teachersContainer');
+            const noResults = document.getElementById('noResults');
+            
+            if (teacherList.length === 0) {
+                container.innerHTML = '';
+                noResults.style.display = 'block';
+                return;
+            }
+            
+            noResults.style.display = 'none';
+            container.innerHTML = '';
+            
+            teacherList.forEach((teacher, index) => {
+                const subjectsHtml = teacher.subjects.map(s => `<span class="badge bg-primary">${s}</span>`).join(' ');
+                
+                container.innerHTML += `
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div class="card-custom teacher-card-stagger" style="animation-delay: ${index * 0.05}s;">
+                            <div class="img-aspect">
+                                <img src="${teacher.image}" class="card-img-top pop-in-zoom teacher-image-glow" style="animation-delay: ${index * 0.06}s;" alt="${teacher.name}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">${teacher.name}</h5>
+                                <p class="card-text text-muted mb-2">
+                                    <strong>${teacher.position}</strong>
+                                </p>
+                                <p class="card-text">${teacher.title}</p>
+                                <div class="mb-3">
+                                    ${subjectsHtml}
+                                </div>
+                                <p class="card-text small">
+                                    <i class="fas fa-envelope"></i> ${teacher.email}<br>
+                                    <i class="fas fa-phone"></i> ${teacher.phone}
+                                </p>
+                                <a href="teacher-single.html?id=${teacher.id}" class="btn-main">Batafsil ma'lumot</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // IntersectionObserver to reveal teacher cards with stagger
+        function animateTeacherCards() {
+            const cards = document.querySelectorAll('.teacher-card-stagger');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // add reveal with slight delay based on index
+                        const el = entry.target;
+                        const idx = Array.from(cards).indexOf(el);
+                        setTimeout(() => {
+                            el.classList.add('reveal');
+                            // also add a subtle float to the image after reveal
+                            const img = el.querySelector('img.pop-in-zoom');
+                            if (img) img.classList.add('teacher-image-float');
+                        }, idx * 80);
+                        observer.unobserve(el);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            cards.forEach(c => observer.observe(c));
+        }
+
+        // O'qituvchi qidirish
+        document.getElementById('teacherSearch').addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            
+            if (searchTerm === '') {
+                displayTeachers();
+                return;
+            }
+            
+            const filtered = teachers.filter(teacher => {
+                return teacher.name.toLowerCase().includes(searchTerm) || 
+                       teacher.title.toLowerCase().includes(searchTerm) ||
+                       teacher.position.toLowerCase().includes(searchTerm) ||
+                       teacher.subjects.some(s => s.toLowerCase().includes(searchTerm));
+            });
+            
+            displayTeachers(filtered);
+        });
+
+        // Sahifa yuklanganida funksiyalarni ishga tushirish
+        window.addEventListener('load', () => {
+            displayTeachers();
+            // small timeout to ensure DOM insertion has finished
+            setTimeout(() => animateTeacherCards(), 80);
+        });
+    </script>
+</body>
+</html>

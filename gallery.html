@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerya - Guliston Davlat Universiteti</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            aspect-ratio: 1;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.15);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(13, 110, 253, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .overlay-content {
+            text-align: center;
+            color: white;
+        }
+        
+        .overlay-content i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .overlay-content p {
+            margin: 0;
+        }
+        
+        /* Modal styles */
+        .modal-gallery {
+            background: rgba(0,0,0,0.95);
+        }
+        
+        .modal-gallery .modal-content {
+            background: transparent;
+            border: none;
+        }
+        
+        .modal-gallery-image {
+            width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+        
+        .category-filter {
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #0d6efd;
+            background: white;
+            color: #0d6efd;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .filter-btn.active {
+            background: #0d6efd;
+            color: white;
+        }
+        
+        .filter-btn:hover {
+            background: #0d6efd;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap"></i> GDU - Kafedra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Bosh sahifa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Kafedra haqida</a></li>
+                    <li class="nav-item"><a class="nav-link" href="teachers.html">O'qituvchilar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html">Fanlar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="news.html">Yangiliklar</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="gallery.html">Galerya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Bog'lanish</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2 btn-theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in-up">Kafedra Fotogalerya</h1>
+            <p class="fade-in-up animate-2">Kafedraning hayoti va faoliyati bo'yicha fotosuratlari</p>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-4">
+        <div class="container category-filter">
+            <h5 class="mb-3">Rasm turini tanlang:</h5>
+            <button class="filter-btn active" data-category="all">Barchasi</button>
+            <button class="filter-btn" data-category="Seminar">Seminar</button>
+            <button class="filter-btn" data-category="Tadbir">Tadbir</button>
+            <button class="filter-btn" data-category="Laboratoriya">Laboratoriya</button>
+            <button class="filter-btn" data-category="Konferensiya">Konferensiya</button>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row g-3" id="galleryContainer">
+                <!-- JavaScript orqali to'ldiriladi -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Modal -->
+    <div class="modal fade modal-gallery" id="galleryModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                <div class="modal-body">
+                    <img id="modalImage" src="" alt="" class="modal-gallery-image">
+                    <p id="modalCaption" class="text-white text-center mt-3"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-content">
+                    <h5>Kafedra haqida</h5>
+                    <p>Amaliy Matematika va Axborot Texnologiyalari Kafedrasi - zamonaviy ta'lim markazi</p>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Tezkor Havolalar</h5>
+                    <div class="footer-links">
+                        <a href="about.html">Kafedra haqida</a>
+                        <a href="teachers.html">O'qituvchilar</a>
+                        <a href="subjects.html">Fanlar</a>
+                        <a href="contact.html">Bog'lanish</a>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Bog'lanish</h5>
+                    <p><i class="fas fa-phone"></i> +998 70 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> kafedra@gdu.uz</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Guliston Davlat Universiteti. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- Gallery page JS -->
+    <script>
+        // Galerya rasmlarini o'rnatish
+        const galleryImages = [
+            { category: 'Seminar', image: 'https://via.placeholder.com/400x400?text=Seminar+1', caption: 'Amaliy matematika seminari' },
+            { category: 'Tadbir', image: 'https://via.placeholder.com/400x400?text=Tadbir+1', caption: 'Kafedra tadbiri' },
+            { category: 'Laboratoriya', image: 'https://via.placeholder.com/400x400?text=Lab+1', caption: 'Kompyuter laboratoriyasi' },
+            { category: 'Konferensiya', image: 'https://via.placeholder.com/400x400?text=Conf+1', caption: 'Xalqaro konferensiya' },
+            { category: 'Seminar', image: 'https://via.placeholder.com/400x400?text=Seminar+2', caption: 'Algoritm seminari' },
+            { category: 'Laboratoriya', image: 'https://via.placeholder.com/400x400?text=Lab+2', caption: 'Dasturiy ta\'minotlar' },
+            { category: 'Tadbir', image: 'https://via.placeholder.com/400x400?text=Tadbir+2', caption: 'Talabalar jamiyati' },
+            { category: 'Konferensiya', image: 'https://via.placeholder.com/400x400?text=Conf+2', caption: 'Ilmiy konferensiya' },
+            { category: 'Seminar', image: 'https://via.placeholder.com/400x400?text=Seminar+3', caption: 'Ma\'lumotnomalar seminari' },
+            { category: 'Laboratoriya', image: 'https://via.placeholder.com/400x400?text=Lab+3', caption: 'AI laboratoriyasi' },
+            { category: 'Tadbir', image: 'https://via.placeholder.com/400x400?text=Tadbir+3', caption: 'Ijtimoiy tadbir' },
+            { category: 'Konferensiya', image: 'https://via.placeholder.com/400x400?text=Conf+3', caption: 'Chet el mutaxassislar' }
+        ];
+
+        let currentFilter = 'all';
+
+        // Galerya ko'rsatish
+        function displayGallery(filterCategory = 'all') {
+            const container = document.getElementById('galleryContainer');
+            container.innerHTML = '';
+            
+            let filtered = galleryImages;
+            if (filterCategory !== 'all') {
+                filtered = galleryImages.filter(img => img.category === filterCategory);
+            }
+
+            filtered.forEach((item, index) => {
+                const col = document.createElement('div');
+                col.className = 'col-lg-3 col-md-4 col-sm-6 fade-in-up';
+                col.style.animationDelay = `${index * 0.05}s`;
+                
+                col.innerHTML = `
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#galleryModal" 
+                         onclick="showImage('${item.image}', '${item.caption}')">
+                        <img src="${item.image}" alt="${item.caption}" class="gallery-image">
+                        <div class="gallery-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-search-plus"></i>
+                                <p>${item.caption}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(col);
+            });
+        }
+
+        // Modalni ko'rsatish
+        function showImage(src, caption) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('modalCaption').textContent = caption;
+        }
+
+        // Filter tugmaları
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                
+                currentFilter = e.target.dataset.category;
+                displayGallery(currentFilter);
+            });
+        });
+
+        // Sahifa yuklanganida
+        window.addEventListener('load', () => {
+            displayGallery();
+        });
+    </script>
+</body>
+</html>

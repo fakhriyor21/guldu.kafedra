@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yangiliklar - Guliston Davlat Universiteti</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        .news-card {
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transform: translateY(-10px);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover .news-image {
+            transform: scale(1.1);
+        }
+        
+        .news-content {
+            padding: 1.5rem;
+        }
+        
+        .news-date {
+            color: #0d6efd;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .news-category {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-graduation-cap"></i> GDU - Kafedra
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Bosh sahifa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Kafedra haqida</a></li>
+                    <li class="nav-item"><a class="nav-link" href="teachers.html">O'qituvchilar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="subjects.html">Fanlar</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="news.html">Yangiliklar</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galerya</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Bog'lanish</a></li>
+                    <li class="nav-item">
+                        <button class="btn btn-outline-light btn-sm ms-2 btn-theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="fade-in-up">Kafedra Yangilikları</h1>
+            <p class="fade-in-up animate-2">Eng so'nggi yangiliklar, tadbir va e'lonlar</p>
+        </div>
+    </section>
+
+    <!-- News Archive -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row" id="newsContainer">
+                <!-- JavaScript orqali to'ldiriladi -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured News (Sidebar) -->
+    <section class="py-5" style="background: linear-gradient(135deg, rgba(13, 110, 253, 0.05) 0%, rgba(13, 202, 240, 0.05) 100%);">
+        <div class="container">
+            <h2 class="section-title">Eng so'nggi Yangiliklar</h2>
+            <div class="row">
+                <div class="col-lg-8" id="allNewsContainer">
+                    <!-- JavaScript orqali to'ldiriladi -->
+                </div>
+                <div class="col-lg-4">
+                    <div class="card-custom">
+                        <div class="card-body">
+                            <h5 class="card-title"><i class="fas fa-bell"></i> E'lonlar</h5>
+                            <div class="list-group list-group-flush mt-3">
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <small>Yangi bakalavr dastur taqdim etildi</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <small>Xalqaro konferensiyasi o'tkaziladi</small>
+                                </a>
+                                <a href="#" class="list-group-item list-group-item-action">
+                                    <small>Stipendiya ariza qabuli boshlandi</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-content">
+                    <h5>Kafedra haqida</h5>
+                    <p>Amaliy Matematika va Axborot Texnologiyalari Kafedrasi - zamonaviy ta'lim markazi</p>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Tezkor Havolalar</h5>
+                    <div class="footer-links">
+                        <a href="about.html">Kafedra haqida</a>
+                        <a href="teachers.html">O'qituvchilar</a>
+                        <a href="subjects.html">Fanlar</a>
+                        <a href="contact.html">Bog'lanish</a>
+                    </div>
+                </div>
+                <div class="col-md-4 footer-content">
+                    <h5>Bog'lanish</h5>
+                    <p><i class="fas fa-phone"></i> +998 70 123-45-67</p>
+                    <p><i class="fas fa-envelope"></i> kafedra@gdu.uz</p>
+                    <div class="social-links mt-3">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Guliston Davlat Universiteti. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    
+    <!-- News page JS -->
+    <script>
+        // Yangiliklar ro'yxatini ko'rsatish
+        function displayNews() {
+            const newsContainer = document.getElementById('newsContainer');
+            const allNewsContainer = document.getElementById('allNewsContainer');
+            
+            // Asosiy yangiliklar
+            news.forEach((article, index) => {
+                newsContainer.innerHTML += `
+                    <div class="col-md-6 mb-4">
+                        <div class="news-card fade-in-up" style="animation-delay: ${index * 0.1}s;">
+                            <img src="${article.image}" alt="${article.title}" class="news-image">
+                            <div class="news-content">
+                                <div class="news-date">
+                                    <i class="fas fa-calendar"></i> ${article.date}
+                                </div>
+                                <div class="news-category">${article.category}</div>
+                                <h5 class="card-title">${article.title}</h5>
+                                <p class="card-text text-muted">${article.excerpt}</p>
+                                <a href="#" class="btn-main">Butun maqolani o'qish</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Sidebar yangiliklar
+            news.slice(0, 3).forEach((article, index) => {
+                allNewsContainer.innerHTML += `
+                    <div class="card-custom mb-4 fade-in-up" style="animation-delay: ${index * 0.1}s;">
+                        <div class="card-body">
+                            <span class="news-category">${article.category}</span>
+                            <h5 class="card-title mt-2">${article.title}</h5>
+                            <p class="card-text small text-muted">
+                                <i class="fas fa-calendar"></i> ${article.date}
+                            </p>
+                            <p class="card-text">${article.excerpt.substring(0, 150)}...</p>
+                            <a href="#" class="btn-outline-main">Batafsil</a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Sahifa yuklanganida
+        window.addEventListener('load', () => {
+            displayNews();
+        });
+    </script>
+</body>
+</html>

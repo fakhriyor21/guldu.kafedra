@@ -1,0 +1,426 @@
+/* ================================================
+   RESPONSIVE CSS FILE
+   Mobil, Tablet, Desktop optimizatsiya
+   ================================================ */
+
+/* ========================
+   TABLET - 768px va pastda
+   ======================== */
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+    }
+
+    .stat-card {
+        padding: 1.5rem;
+    }
+
+    .card-img-top {
+        height: 200px;
+    }
+
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+
+    .nav-link {
+        font-size: 0.95rem;
+        padding: 0.4rem 0.8rem !important;
+    }
+
+    .btn-primary-custom {
+        padding: 0.7rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    .scroll-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+/* ========================
+   MOBILE - 576px va pastda
+   ======================== */
+
+@media (max-width: 576px) {
+    .hero-section {
+        min-height: 80vh;
+        padding: 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+        line-height: 1.1;
+    }
+
+    .hero-content h2 {
+        font-size: 1.3rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+
+    .page-header {
+        padding: 2rem 1rem;
+        margin-top: 60px;
+    }
+
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .page-header p {
+        font-size: 1rem;
+    }
+
+    .stat-card {
+        padding: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.95rem;
+    }
+
+    .card-custom {
+        margin-bottom: 1.5rem;
+    }
+
+    .card-img-top {
+        height: 180px;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    .btn-main {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .btn-outline-main {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .btn-primary-custom {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.95rem;
+        margin: 0.3rem;
+    }
+
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .navbar {
+        padding: 0.5rem 0 !important;
+    }
+
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .nav-link {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.5rem !important;
+    }
+
+    .footer-content {
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-links a {
+        display: inline;
+        margin-right: 1rem;
+    }
+
+    .social-links {
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    .scroll-to-top {
+        width: 40px;
+        height: 40px;
+        bottom: 15px;
+        right: 15px;
+        font-size: 1rem;
+    }
+
+    .form-control {
+        padding: 0.7rem 0.8rem;
+        font-size: 1rem;
+    }
+
+    .btn-submit {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .mt-5 {
+        margin-top: 2rem !important;
+    }
+
+    .mb-5 {
+        margin-bottom: 2rem !important;
+    }
+
+    .py-5 {
+        padding: 2rem 0 !important;
+    }
+}
+
+/* ========================
+   SMALL MOBILE - 480px va pastda
+   ======================== */
+
+@media (max-width: 480px) {
+    .hero-section {
+        min-height: 70vh;
+    }
+
+    .hero-content h1 {
+        font-size: 1.7rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1.1rem;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .card-img-top {
+        height: 160px;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+    }
+
+    .btn-primary-custom {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .btn-main {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .scroll-to-top {
+        width: 38px;
+        height: 38px;
+        bottom: 12px;
+        right: 12px;
+        font-size: 0.9rem;
+    }
+
+    .footer-content h5 {
+        font-size: 1rem;
+    }
+
+    .footer-content p {
+        font-size: 0.85rem;
+    }
+
+    .social-links a {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 0.9rem;
+        margin-right: 0.5rem;
+    }
+}
+
+/* ========================
+   ULTRA SMALL - 360px va pastda
+   ======================== */
+
+@media (max-width: 360px) {
+    .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero-content h2 {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+    }
+
+    .stat-number {
+        font-size: 1.6rem;
+    }
+
+    .page-header h1 {
+        font-size: 1.3rem;
+    }
+
+    .btn-primary-custom {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .navbar-brand {
+        font-size: 0.95rem;
+    }
+}
+
+/* ========================
+   LANDSCAPE MODE
+   ======================== */
+
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 90vh;
+        padding: 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .page-header {
+        padding: 1.5rem;
+    }
+
+    .stats-section {
+        padding: 2rem 0;
+    }
+
+    .stat-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* ========================
+   HIGH DPI / RETINA
+   ======================== */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .card-custom {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* ========================
+   PRINT STYLES
+   ======================== */
+
+@media print {
+    .navbar,
+    .footer,
+    .scroll-to-top,
+    .loading-screen,
+    .btn-theme-toggle {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .page-header {
+        background: none;
+        color: black;
+        border-bottom: 2px solid #ccc;
+    }
+
+    .section-title {
+        color: black;
+    }
+
+    a {
+        color: #0066cc;
+    }
+}
+
+/* ========================
+   PREFERS REDUCED MOTION
+   ======================== */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
