@@ -171,7 +171,7 @@ const translations = {
         'about.mission': 'Миссия',
         'about.mission-text': 'Подготовка студентов как мировых специалистов в области современной математики и IT, внесение вклада в цифровую трансформацию общества.',
         'about.vision': 'Видение',
-        'about.vision-text': 'Стать центром высшего образования, проводящим научные исследования, инновации и образование международного уровня в Центральной Азии.'
+        'about.vision-text': 'Стать центром высшего образования, проводящим научные исследования, инновации и образование международного уровня в Центральной Азии.',
         'news.latest': 'Последние новости',
         'news.view-all': 'Все новости',
         'news.read': 'Читать',
@@ -192,20 +192,34 @@ const translations = {
 class LanguageManager {
     constructor() {
         this.currentLang = localStorage.getItem('kafedra-language') || 'uz';
-        this.languageSelect = document.getElementById('languageSelect');
-        this.init();
+        this.languageSelect = null;
+        this.isInitialized = false;
+        
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => this.init());
+        } else {
+            this.init();
+        }
     }
 
     init() {
-        // Set initial language
+        if (this.isInitialized) return;
+        
+        this.languageSelect = document.getElementById('languageSelect');
+        
+        // Set initial language from localStorage
         this.setLanguage(this.currentLang, false);
         
+        // Add event listener to language select
         if (this.languageSelect) {
             this.languageSelect.value = this.currentLang;
             this.languageSelect.addEventListener('change', (e) => {
                 this.setLanguage(e.target.value, true);
             });
         }
+        
+        this.isInitialized = true;
     }
 
     setLanguage(lang, save = true) {
@@ -223,6 +237,9 @@ class LanguageManager {
 
         // Update HTML lang attribute
         document.documentElement.lang = lang === 'ru' ? 'ru' : lang === 'en' ? 'en' : 'uz';
+        
+        // Emit custom event so other scripts can listen to language changes
+        window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: lang } }));
     }
 
     updatePageContent() {
