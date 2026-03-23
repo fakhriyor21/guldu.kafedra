@@ -172,7 +172,13 @@
                                     <i class="fas fa-envelope"></i> ${teacher.email}<br>
                                     <i class="fas fa-phone"></i> ${teacher.phone}
                                 </p>
-                                <a href="teacher-single.html?id=${teacher.id}" class="btn-main">Batafsil ma'lumot</a>
+                                <div class="social-icons mb-2">
+                                    ${teacher.scholar?`<a href="${teacher.scholar}" target="_blank" rel="noopener"><i class="fas fa-graduation-cap"></i> <span class="profile-name">Google Scholar</span></a>`:''}
+                                    ${teacher.scopus?`<a href="${teacher.scopus}" target="_blank" rel="noopener"><i class="fas fa-file-alt"></i> <span class="profile-name">Scopus</span></a>`:''}
+                                    ${teacher.linkedin?`<a href="${teacher.linkedin}" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> <span class="profile-name">LinkedIn</span></a>`:''}
+                                    ${teacher.researchgate?`<a href="${teacher.researchgate}" target="_blank" rel="noopener"><i class="fas fa-network-wired"></i> <span class="profile-name">ResearchGate</span></a>`:''}
+                                </div>
+                                <a href="teacher-single.html?id=${teacher.id}" class="btn-main" data-i18n="profile.more">Batafsil ma'lumot</a>
                             </div>
                         </div>
                     </div>

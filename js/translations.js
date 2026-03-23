@@ -51,6 +51,8 @@ const translations = {
         'footer.about-desc': 'Amaliy Matematika va Axborot Texnologiyalari Kafedrasi - zamonaviy ta\'lim markazi',
         'footer.links': 'Tezkor Havolalar',
         'footer.contact': "Bog'lanish",
+        'profile.social': "Ijtimoiy profillar",
+        'profile.more': 'Batafsil ma\'lumot',
         'footer.copyright': '© 2024 Guliston Davlat Universiteti. Barcha huquqlar himoyalangan.',
         
         // About Page
@@ -111,6 +113,8 @@ const translations = {
         'footer.about-desc': 'Department of Applied Mathematics and Information Technology - a center of modern education',
         'footer.links': 'Quick Links',
         'footer.contact': 'Contact',
+        'profile.social': 'Social profiles',
+        'profile.more': 'More information',
         'footer.copyright': '© 2024 Guliston State University. All rights reserved.',
         
         // About Page
@@ -181,6 +185,8 @@ const translations = {
         'footer.about-desc': 'Кафедра прикладной математики и информационных технологий - центр современного образования',
         'footer.links': 'Быстрые ссылки',
         'footer.contact': 'Контакт',
+        'profile.social': 'Социальные профили',
+        'profile.more': 'Подробнее',
         'footer.copyright': '© 2024 Гулистанский Государственный Университет. Все права защищены.'
     }
 };

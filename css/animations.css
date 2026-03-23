@@ -10,7 +10,7 @@
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px);
     }
     to {
         opacity: 1;
@@ -26,7 +26,7 @@
 @keyframes slideInLeft {
     from {
         opacity: 0;
-        transform: translateX(-50px);
+        transform: translateX(-60px);
     }
     to {
         opacity: 1;
@@ -37,7 +37,7 @@
 @keyframes slideInRight {
     from {
         opacity: 0;
-        transform: translateX(50px);
+        transform: translateX(60px);
     }
     to {
         opacity: 1;
@@ -63,7 +63,43 @@
 
 @keyframes float {
     0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(0, -10px); }
+    25% { transform: translate(0, -10px); }
+    50% { transform: translate(5px, -20px); }
+    75% { transform: translate(-5px, -10px); }
+}
+
+/* New animations for enhanced UI */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-10deg) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
 }
 
 /* ========================
@@ -98,6 +134,18 @@
     animation: float 3s ease-in-out infinite;
 }
 
+.slide-up {
+    animation: slideUp 0.8s ease-out;
+}
+
+.zoom-in {
+    animation: zoomIn 0.6s ease-out;
+}
+
+.rotate-in {
+    animation: rotateIn 0.7s ease-out;
+}
+
 /* ========================
    STAGGER ANIMATION
    ======================== */
@@ -113,28 +161,28 @@
    ======================== */
 
 .hover-lift {
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-lift:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .hover-scale {
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-scale:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .hover-rotate {
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hover-rotate:hover {
-    transform: rotate(5deg);
+    transform: rotate(5deg) scale(1.05);
 }
 
 /* ========================
@@ -144,7 +192,7 @@
 .btn-animated {
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-animated::before {
@@ -158,6 +206,7 @@
     background: rgba(255, 255, 255, 0.3);
     transform: translate(-50%, -50%);
     transition: width 0.6s, height 0.6s;
+    z-index: 1;
 }
 
 .btn-animated:hover::before {
@@ -180,8 +229,8 @@
    ======================== */
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.7); }
+    50% { opacity: 0.8; }
 }
 
 .pulse {
@@ -375,7 +424,74 @@
     transition: box-shadow 0.5s ease;
 }
 
+/* Social/profile icon links used in teacher cards and profile page */
+.social-icons a {
+    margin-right: 0.6rem;
+    font-size: 1.3rem;
+    color: var(--text-light);
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+}
+.social-icons a:hover {
+    color: var(--primary);
+}
+.social-icons .profile-name {
+    margin-left: 0.3rem;
+    font-size: 0.9rem;
+}
+
+/* ensure teacher image scales well and remains sharp */
+.teacher-image {
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 6;
+}
+
+/* animation for social links (fade-in-up already applied in JS) */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+    .fade-in-up { animation: none !important; }
+}
+
+/* ========================
+   SCROLL-TRIGGERED ANIMATIONS
+   ======================== */
+
+/* Elements that will be animated on scroll should start invisible */
+.fade-in-up:not(.animated),
+.slide-in-left:not(.animated),
+.slide-in-right:not(.animated),
+.scale-in:not(.animated),
+.zoom-in:not(.animated),
+.rotate-in:not(.animated),
+.slide-up:not(.animated) {
+    opacity: 0;
+}
+
+/* Cards and sections preserve visibility */
+.card-custom:not(.animated),
+.stat-card:not(.animated) {
+    opacity: 1;
+}
+
+/* Animated elements should be fully visible */
+.animated {
+    opacity: 1 !important;
+}
+
 /* Accessibility: respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    .pop-in-zoom, .teacher-image-float, .teacher-card-stagger { animation: none !important; transition: none !important; }
+    .pop-in-zoom, .teacher-image-float, .teacher-card-stagger, 
+    [class*="fade-in"], [class*="slide-in"], [class*="zoom"], 
+    [class*="scale"], [class*="rotate"] { 
+        animation: none !important; 
+        transition: none !important; 
+    }
 }

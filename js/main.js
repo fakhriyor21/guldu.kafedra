@@ -18,7 +18,35 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ========================
-// 2. DARK MODE TOGGLE
+// 2. NAVBAR SCROLL EFFECT
+// ========================
+
+class NavbarScrollEffect {
+    constructor() {
+        this.navbar = document.querySelector('.navbar-custom');
+        this.scrollThreshold = 50;
+        this.init();
+    }
+
+    init() {
+        window.addEventListener('scroll', () => this.handleScroll());
+    }
+
+    handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > this.scrollThreshold) {
+            this.navbar.classList.add('scrolled');
+        } else {
+            this.navbar.classList.remove('scrolled');
+        }
+    }
+}
+
+const navbarScrollEffect = new NavbarScrollEffect();
+
+// ========================
+// 3. DARK MODE TOGGLE
 // ========================
 
 class ThemeManager {
@@ -171,12 +199,15 @@ class CounterAnimation {
 const counterAnimation = new CounterAnimation();
 
 // ========================
-// 5. SCROLL ANIMATIONS
+// 4. ENHANCED SCROLL ANIMATIONS
 // ========================
 
 class ScrollAnimations {
     constructor() {
-        this.elements = document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right');
+        // Select all elements that should be animated on scroll
+        this.elements = document.querySelectorAll(
+            '.fade-in-up, .slide-in-left, .slide-in-right, .scale-in, .zoom-in, .rotate-in, .card-custom, .stat-card'
+        );
         if (this.elements.length > 0) {
             this.init();
         }
@@ -186,14 +217,37 @@ class ScrollAnimations {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.classList.add('animated');
+                    this.animateElement(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '50px'
+        });
 
         this.elements.forEach(element => {
             observer.observe(element);
         });
+    }
+
+    animateElement(el) {
+        if (el.classList.contains('animated')) return;
+        
+        // Get animation class from element or apply default
+        let animationClass = 'fade-in-up';
+        
+        if (el.classList.contains('slide-in-left')) animationClass = 'slide-in-left';
+        else if (el.classList.contains('slide-in-right')) animationClass = 'slide-in-right';
+        else if (el.classList.contains('scale-in')) animationClass = 'scale-in';
+        else if (el.classList.contains('zoom-in')) animationClass = 'zoom-in';
+        else if (el.classList.contains('rotate-in')) animationClass = 'rotate-in';
+        else if (el.classList.contains('card-custom') && !el.classList.contains('fade-in-up')) {
+            animationClass = 'fade-in-up';
+        }
+        
+        // Apply animation with a small delay for cards
+        el.style.animation = `${animationClass} 0.8s ease-out forwards`;
+        el.classList.add('animated');
     }
 }
 

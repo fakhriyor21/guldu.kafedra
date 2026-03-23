@@ -39,21 +39,28 @@ href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.c
         .teacher-image-wrapper {
             text-align: center;
             margin-bottom: 2rem;
+            /* center wrapper and limit width for responsiveness */
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 350px;
+            overflow: hidden;
+            border-radius: 50%;
         }
         
         .teacher-image {
-            width: 250px;
-            height: 300px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            /* make the profile picture more friendly and fit the header */
+            width: 100%;
+            height: auto;
+            border-radius: 50%; /* circle */
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
             object-fit: cover;
-            border: 5px solid rgba(255,255,255,0.2);
+            border: 6px solid rgba(255,255,255,0.6);
             transition: all 0.3s ease;
         }
 
         .teacher-image:hover {
-            box-shadow: 0 25px 70px rgba(0,0,0,0.4);
-            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+            transform: translateY(-3px) scale(1.02);
         }
         
         .contact-info-card {
@@ -125,6 +132,20 @@ href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.c
             pointer-events: none;
             background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0zm0 90c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z' fill='%23333'/%3E%3C/svg%3E");
         }
+        /* additional styles for social profile icons and centering */
+        .social-icons a {
+            margin-right: 0.8rem;
+            font-size: 1.5rem;
+            color: #333;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: #0d6efd;
+        }
+        .teacher-image-wrapper {
+            text-align: center;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -174,13 +195,16 @@ href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.c
             <a href="teachers.html" class="text-white mb-3" style="text-decoration: none;">
                 <i class="fas fa-arrow-left"></i> O'qituvchilar ro'yxatiga qaytish
             </a>
-            <div class="row mt-3">
-                <div class="col-lg-4">
-                    <div class="teacher-image-wrapper fade-in-up">
-                        <img id="teacherImage" src="" alt="O'qituvchi" class="teacher-image">
-                    </div>
+            <!-- image centered with animation -->
+            <div class="text-center mt-3">
+                <div class="teacher-image-wrapper fade-in-up">
+                    <img id="teacherImage" src="" alt="O'qituvchi" class="teacher-image img-fluid">
                 </div>
-                <div class="col-lg-8">
+                <!-- moved social profiles under picture -->
+                <div class="social-icons mt-3" id="teacherProfiles"></div>
+            </div>
+            <div class="row mt-4 justify-content-center">
+                <div class="col-lg-8 text-center">
                     <div class="fade-in-up animate-2">
                         <h1 id="teacherName"></h1>
                         <p class="lead mb-3"><strong id="teacherPosition"></strong></p>
@@ -208,6 +232,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.c
                             <strong><i class="fas fa-phone"></i> Telefon:</strong><br>
                             <a href="tel:" id="teacherPhone"></a>
                         </div>
+
                         <div>
                             <strong><i class="fas fa-user-tie"></i> Lavozim:</strong><br>
                             <span id="teacherPositionFull"></span>
@@ -359,6 +384,29 @@ href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.c
             const phoneLink = document.getElementById('teacherPhone');
             phoneLink.href = `tel:${teacher.phone}`;
             phoneLink.textContent = teacher.phone;
+
+            // Social/profile links
+            const profilesContainer = document.getElementById('teacherProfiles');
+            // already present under teacher image
+            profilesContainer.innerHTML = '';
+            const profiles = [
+                { key: 'scholar', icon: 'graduation-cap', name: 'Google Scholar' },
+                { key: 'scopus', icon: 'file-alt', name: 'Scopus' },
+                { key: 'linkedin', icon: 'linkedin', name: 'LinkedIn' },
+                { key: 'researchgate', icon: 'network-wired', name: 'ResearchGate' }
+            ];
+            profiles.forEach((p,index) => {
+                if (teacher[p.key]) {
+                    const a = document.createElement('a');
+                    a.href = teacher[p.key];
+                    a.target = '_blank';
+                    a.rel = 'noopener';
+                    a.classList.add('fade-in-up');
+                    a.style.animationDelay = `${0.2 + index*0.1}s`;
+                    a.innerHTML = `<i class="fas fa-${p.icon}"></i> <span class="profile-name">${p.name}</span>`;
+                    profilesContainer.appendChild(a);
+                }
+            });
 
             // Fanlar ro'yxati - batafsil animatsiya bilan
             const subjectsList = document.getElementById('subjectsList');
